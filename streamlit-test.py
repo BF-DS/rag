@@ -2,12 +2,14 @@ import streamlit as st
 import PyPDF2
 
 st.set_page_config(
-    page_title="RAG Streamlit Test",
-    page_icon=":robot:",
+    page_title="File Upload Test",
+    page_icon=":page_facing_up:",
+    initial_sidebar_state="expanded",
     layout="wide",
 )
-st.title("RAG Streamlit Test")
-st.subheader("This is a test for the RAG Streamlit app")
+st.title("File Upload Test")
+st.subheader("This is a test for a Streamlit app to upload files and display their content.")
+st.write("You can upload a PDF or a text file, and the app will display the content of the first page or the first 1000 characters respectively.")
 
 # Upload file
 uploaded_file = st.file_uploader("Choose a file", type=["pdf", "txt"],accept_multiple_files=False)
