@@ -2,7 +2,7 @@
 
 import streamlit as st
 
-st.image("img/BGB.jpg")
+st.image("img/Praxiseinstieg-LLM.jpg")
 st.subheader("Please enter your Query")
 
 # initialize chat messages from histroy on app rerun
@@ -11,7 +11,7 @@ if "messages" not in st.session_state:
     st.session_state.chat_history = []
 
 # Accept user input
-if prompt := st.chat_input("Ask a question about the BGB"):
+if prompt := st.chat_input("Ask a question about the Book"):
     # Invoke the function with the Retriever with chat histroy and display responses in chat container in query
     with st.spinner("Generating response..."):
         response = query(question=prompt, chat_history=st.session_state.chat_history)
