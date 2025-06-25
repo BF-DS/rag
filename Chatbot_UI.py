@@ -2,7 +2,11 @@
 
 import streamlit as st
 
-st.image("img/Praxiseinstieg-LLM.jpg")
+# Center the image using Streamlit's columns
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.image("img/Praxiseinstieg-LLM.jpg")
+
 st.subheader("Please enter your Query")
 
 # initialize chat messages from histroy on app rerun
