@@ -7,7 +7,7 @@ col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
     st.image("img/Praxiseinstieg-LLM.jpg")
 
-st.subheader("Please enter your Query")
+st.subheader("Bitte stellen Sie Ihre Fragen zum Buch")
 
 # initialize chat messages from histroy on app rerun
 if "messages" not in st.session_state:
@@ -15,9 +15,9 @@ if "messages" not in st.session_state:
     st.session_state.chat_history = []
 
 # Accept user input
-if prompt := st.chat_input("Ask a question about the Book"):
+if prompt := st.chat_input("Geben Sie Ihre Frage ein:"):
     # Invoke the function with the Retriever with chat histroy and display responses in chat container in query
-    with st.spinner("Generating response..."):
+    with st.spinner("Wird verarbeitet..."):
         response = query(question=prompt, chat_history=st.session_state.chat_history)
         with st.chat_message("user"):
             st.markdown(prompt)
