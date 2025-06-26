@@ -17,6 +17,8 @@ def load_document(file_type, file_path):
     Returns:
         list: Loaded documents.
     """
+    # TODO: Extract file type from the file name, so no need to pass it as an argument.
+
     # for html:
     # documents[0].page_content  # Access the content of the first document
     # documents[0].metadata  # Access the metadata of the first document
