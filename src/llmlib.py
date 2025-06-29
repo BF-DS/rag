@@ -5,7 +5,7 @@ from langchain_community.document_loaders.csv_loader import CSVLoader # load CSV
 from langchain.text_splitter import RecursiveCharacterTextSplitter
     
 
-def load_document(file_type, file_path):
+def load_document(file_path):
     """
     Load a document based on the file type. For pdf it loads each page as a separate document.
     You can access the content and metadata of each document after loading using document[0].page_content and document[0].metadata.
@@ -17,15 +17,16 @@ def load_document(file_type, file_path):
     Returns:
         list: Loaded documents.
     """
-    # TODO: Extract file type from the file name, so no need to pass it as an argument.
-
-    # for html:
-    # documents[0].page_content  # Access the content of the first document
-    # documents[0].metadata  # Access the metadata of the first document
+    # extract file type from file_path
+    file_type = file_path.split('.')[-1].lower()
+    # load
     if file_type == "csv":
         loader = CSVLoader(file_path=file_path)
     elif file_type == "html":
         loader = UnstructuredHTMLLoader(file_path=file_path)
+        # for html:
+        # documents[0].page_content  # Access the content of the first document
+        # documents[0].metadata  # Access the metadata of the first document
     elif file_type == "pdf":
         loader = PyPDFLoader(file_path=file_path)
     else:
