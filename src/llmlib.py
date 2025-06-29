@@ -3,7 +3,10 @@
 from langchain_community.document_loaders import PyPDFLoader, UnstructuredHTMLLoader # load PDF and HTML files
 from langchain_community.document_loaders.csv_loader import CSVLoader # load CSV files
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+import os
     
+def list_files(directory):
+    return [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
 
 def load_document(file_path):
     """
