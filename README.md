@@ -16,6 +16,7 @@ As external document it uses the book 'Praxiseinstieg Large Language Models' by 
 ![Praxiseinstieg Large Language Models](img/Praxiseinstieg-LLM.jpg)
 
 ## Features
+![retrieval-pipeline](img/retrieval_chain.jpg)
 
 - Document ingestion and splitting
 - Vectorization of documents for efficient retrieval
