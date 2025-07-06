@@ -32,3 +32,5 @@ As external document it uses the book 'Praxiseinstieg Large Language Models' by 
 ## Project Structure
 
 - `main.py`: Main script to run the RAG pipeline.
+- `src/`: Contains utility functions for document loading, splitting, and vectorization.
+- `basics-notebooks/`: Jupyter notebooks demonstrating concepts for the RAG process.
