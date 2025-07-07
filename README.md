@@ -7,6 +7,7 @@ This project implements a Retrieval-Augmented Generation (RAG) pipeline using Py
 ![LangChain](https://img.shields.io/badge/LangChain-4B8BBE?logo=python&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white)
 ![Chroma](https://img.shields.io/badge/Chroma-FF6F00?logo=chroma&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
 
