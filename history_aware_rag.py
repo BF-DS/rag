@@ -50,7 +50,7 @@ class HistoryAwareRAGChatbot:
         )
         
         # Create retriever
-        self.retriever = self.vector_store.as_retriever(search_kwargs={"k": 4})
+        self.retriever = self.vector_store.as_retriever(search_kwargs={"k": 3})
         
         # Setup history-aware retriever and QA chain
         self._setup_chains()
@@ -60,9 +60,9 @@ class HistoryAwareRAGChatbot:
         
         # Contextualize question prompt
         contextualize_q_system_prompt = """Given a chat history and the latest user question \
-which might reference context in the chat history, formulate a standalone question \
-which can be understood without the chat history. Do NOT answer the question, \
-just reformulate it if needed and otherwise return it as is."""
+        which might reference context in the chat history, formulate a standalone question \
+        which can be understood without the chat history. Do NOT answer the question, \
+        just reformulate it if needed and otherwise return it as is."""
         
         contextualize_q_prompt = ChatPromptTemplate.from_messages([
             ("system", contextualize_q_system_prompt),
@@ -130,7 +130,7 @@ just reformulate it if needed and otherwise return it as is."""
             "question": question
         }
     
-    def get_similar_documents(self, query: str, k: int = 4) -> List[Dict[str, Any]]:
+    def get_similar_documents(self, query: str, k: int = 3) -> List[Dict[str, Any]]:
         """
         Get similar documents for a query.
         
