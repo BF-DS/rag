@@ -68,6 +68,21 @@ Create a .env file in the root directory with the following content:
 ```plaintext
 OPENAI_API_KEY=your_openai_api_key
 ```
+## Docker
+Build the Docker image using the following command:
+```bash
+docker build -t streamlit-rag .
+```
+The -t flag allows you to tag the image with a name (in this case, `streamlit-rag`), making it easier to reference later.
+
+Run the Docker container with the following command:
+```bash
+docker run -p 8501:8501 --env-file .env streamlit-rag
+```
+8501 is the default port for Streamlit apps, and it is mapped to the same port on the host machine. The `--env-file .env` option allows you to pass environment variables from the `.env` file to the container.
+
+
+## Conda Env
 It´s recommended to use a virtual environment to manage dependencies. You can use `conda` for this purpose. The following commands will create a new conda environment and install the required packages:   
 ```bash
 conda create -n rag-env python=3.13
