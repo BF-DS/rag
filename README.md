@@ -68,6 +68,7 @@ Create a .env file in the root directory with the following content:
 ```plaintext
 OPENAI_API_KEY=your_openai_api_key
 ```
+Note: Make sure to not use quotes around the API key. Otherwise it will be treated as a string literal and may not work as expected.
 ## Docker
 Build the Docker image using the following command:
 ```bash
