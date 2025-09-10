@@ -14,7 +14,7 @@ from langchain.chains import create_history_aware_retriever, create_retrieval_ch
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
 class HistoryAwareRAGChatbot:
-    def __init__(self, vector_store_path: str = "./vector_store", collection_name: str = "book-rag"):
+    def __init__(self, vector_store_path: str = "../vector_store", collection_name: str = "book-rag"):
         """
         Initialize the History-Aware RAG Chatbot.
         

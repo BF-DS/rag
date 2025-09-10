@@ -11,13 +11,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project files (but not .env for security)
 # local folder destination
 COPY streamlit-rag/ ./streamlit-rag 
-# copy the history_aware_rag.py wit the chatbot 
-COPY history_aware_rag.py ./streamlit-rag/
+# copy the history_aware_rag.py file from the local folder to the destination folder
+COPY streamlit-rag/history_aware_rag.py ./streamlit-rag/history_aware_rag.py
 
 # Expose Streamlit default port
 EXPOSE 8501
 
 # Set working directory inside the app folder
+# important for relative paths in the app.py and history_aware_rag.py
 WORKDIR /rag/streamlit-rag
 
 # Run the Streamlit app
