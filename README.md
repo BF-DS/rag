@@ -8,17 +8,19 @@ This project implements a Retrieval-Augmented Generation (RAG) pipeline using Py
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white)
 ![Chroma](https://img.shields.io/badge/Chroma-FF6F00?logo=chroma&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
 
 # Table of Contents
 - [Process Overview](#process-overview)
   - [Vector store loading](#vector-store-loading)
-  - [retrieval](#retrieval)
+  - [Retrieval](#retrieval)
 - [External Document](#external-document)
 - [Project Structure](#project-structure)
 - [Installation and Usage](#installation-and-usage)
-- [Contributing](#contributing)
+- [Running the App](#running-the-app)
+- [Debugging](#debugging)
 
 
 ## Process Overview
@@ -78,28 +80,18 @@ The -t flag allows you to tag the image with a name (in this case, `streamlit-ra
 
 Run the Docker container with the following command:
 ```bash
-docker run -p 8501:8501 --env-file .env streamlit-rag
+docker run -p 8501:8501 --env-file .env -v "$(pwd)/vector_store:/rag/vector_store" streamlit-rag
 ```
-8501 is the default port for Streamlit apps, and it is mapped to the same port on the host machine. The `--env-file .env` option allows you to pass environment variables from the `.env` file to the container.
+**Explanation of the command:**
+8501 is the default port for Streamlit apps, and it is mapped to the same port on the host machine. The `--env-file .env` option allows you to pass environment variables from the `.env` file to the container. It´s not copied into the image for security reasons. 
+The vector store is not copied into the Docker image to keep the image size small. And also to allow for easy updates to the vector store without needing to rebuild the entire Docker image. Instead, you need to mount the vector store directory as a volume when running the container. You can do this by adding the `-v` option to the `docker run` command with the path to the vector store directory on your host machine and the path where you want to mount it inside the container (`/rag/vector_store` in this case). Replace `$(pwd)/vector_store` with the actual path to your vector store directory if you are not running the command from the root directory of the project. `streamlit-rag` is the name of the Docker image to run.
 
-
-## Conda Env
-It´s recommended to use a virtual environment to manage dependencies. You can use `conda` for this purpose. The following commands will create a new conda environment and install the required packages:   
-```bash
-conda create -n rag-env python=3.13
-conda activate rag-env
-pip install -r requirements.txt
-```
-After creating the environment and installing the dependencies, you can run the streamlit app with the following command:
-```bash
-streamlit run streamlit-rag/app.py
-```
-Now the terminal should display a message indicating that the app is running on `http://localhost:8501`. You can open this URL in your web browser to access the app.
-You can now enter your questions in the input field and the LLM will answer them based on the ingested documents. The app also displays the source documents used to generate the answer, allowing you to verify the information provided by the LLM. 
+# Running the App
+After running the command above, the terminal should display a message indicating that the app is running on `http://localhost:8501` or `http://0.0.0.0:8501`. You can open this URL in your web browser to access the app. You can now enter your questions in the input field and the LLM will answer them based on the ingested documents. The app also displays the source documents used to generate the answer, allowing you to verify the information provided by the LLM.
 
 <p align="center">
     <video width="600" controls>
-        <source src="img/rag_chat.mp4" type="video/mp4">
+        <source src="img/rag_chat.gif" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 </p>
@@ -108,7 +100,7 @@ Follow up questions are also supported, allowing you to ask further questions ba
 
 <p align="center">
     <video width="600" controls>
-        <source src="img/history-aware_rag_chat.mp4" type="video/mp4">
+        <source src="img/history-aware_rag_chat.gif" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 </p>
@@ -117,7 +109,22 @@ If the LLM does not have enough context to answer a question, it will inform you
 
 <p align="center">
     <video width="600" controls>
-        <source src="img/outofcontext_rag_chat.mp4" type="video/mp4">
+        <source src="img/outofcontext_rag_chat.gif" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 </p>
+
+# Debugging
+## Conda Env
+When not using a container it´s recommended to use a virtual environment to manage dependencies. You can use `conda` for this purpose. The following commands will create a new conda environment and install the required packages:   
+```bash
+conda create -n rag-env python=3.12
+conda activate rag-env
+pip install -r requirements.txt
+```
+After creating the environment and installing the dependencies, you can run the streamlit app with the following command:
+```bash
+cd streamlit-rag
+streamlit run app.py
+```
+It´s important to run the app from within the `streamlit-rag` directory, as the app relies on relative paths to access other modules and resources.
