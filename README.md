@@ -89,34 +89,20 @@ The vector store is not copied into the Docker image to keep the image size smal
 # Running the App
 After running the command above, the terminal should display a message indicating that the app is running on `http://localhost:8501` or `http://0.0.0.0:8501`. You can open this URL in your web browser to access the app. You can now enter your questions in the input field and the LLM will answer them based on the ingested documents. The app also displays the source documents used to generate the answer, allowing you to verify the information provided by the LLM.
 
-<p align="center">
-    <video width="600" controls>
-        <source src="img/rag_chat.gif" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+![rag-chat](img/rag_chat.gif)
 
 Follow up questions are also supported, allowing you to ask further questions based on the previous answers. The app will maintain the context of the conversation and provide relevant answers based on the ingested documents.
 
-<p align="center">
-    <video width="600" controls>
-        <source src="img/history-aware_rag_chat.gif" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+![history-aware-rag-chat](img/history-aware_rag_chat.gif)
+
 
 If the LLM does not have enough context to answer a question, it will inform you about it. You can then provide additional context or ask a different question.
 
-<p align="center">
-    <video width="600" controls>
-        <source src="img/outofcontext_rag_chat.gif" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+![out-of-context-rag-chat](img/outofcontext_rag_chat.gif)
 
 # Debugging
 ## Conda Env
-When not using a container it´s recommended to use a virtual environment to manage dependencies. You can use `conda` for this purpose. The following commands will create a new conda environment and install the required packages:   
+When not using a container it´s recommended to use a virtual environment to manage dependencies. You can use `anaconda` for this purpose. The following commands will create a new conda environment and install the required packages:   
 ```bash
 conda create -n rag-env python=3.12
 conda activate rag-env
